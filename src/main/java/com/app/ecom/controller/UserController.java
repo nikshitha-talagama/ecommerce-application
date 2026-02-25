@@ -1,7 +1,8 @@
-package controller;
+package com.app.ecom.controller;
 
-import model.User;
-import service.UserService;
+import com.app.ecom.dto.UserRequest;
+import com.app.ecom.dto.UserResponse;
+import com.app.ecom.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,12 +16,12 @@ public class UserController {
 
 
     @GetMapping
-     public ResponseEntity<List<User>> getusers(){
+     public ResponseEntity<List<UserResponse>> getusers(){
 
         return ResponseEntity.ok(userService.fetchusers());
      }
     @GetMapping("/{id}")
-    public ResponseEntity<User> getAuser(@PathVariable Long id){
+    public ResponseEntity<UserResponse> getAuser(@PathVariable Long id){
 //User user=userService.fetchAuser(id);
 //        if(user==null){
 //            return ResponseEntity.notFound().build();
@@ -31,15 +32,16 @@ public class UserController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
     @PostMapping
-    public ResponseEntity<String> createusers(@RequestBody User user){
-        userService.addusers(user);
+    public ResponseEntity<String> createusers(@RequestBody UserRequest userRequest){
+        userService.addusers(userRequest);
         return ResponseEntity.ok("succesfully added");
     }
     @PutMapping("/{id}")
-    public ResponseEntity<String> updatedUser(@PathVariable Long id,@RequestBody User updatedUser){
-        boolean updated=userService.updateUser(id,updatedUser);
+    public ResponseEntity<String> updatedUser(@PathVariable Long id,@RequestBody UserRequest updatedUserRequest){
+        boolean updated=userService.updateUser(id,updatedUserRequest);
         if(updated)
             return ResponseEntity.ok("succesfully added");
         return ResponseEntity.notFound().build();
     }
+
 }
