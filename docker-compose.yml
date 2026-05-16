@@ -5,7 +5,11 @@ services:
     environment:
       POSTGRES_USER: embarkx
       POSTGRES_PASSWORD: embarkx
+      POSTGRES_DB: ecomdb
       PGDATA: /data/postgres
+
+
+
     volumes:
       - postgres:/data/postgres
     ports:

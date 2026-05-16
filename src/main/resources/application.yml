@@ -1,0 +1,25 @@
+spring:
+
+    application:
+        name: ecom-application
+
+    datasource:
+        url: jdbc:postgresql://localhost:5432/ecomdb
+        username: embarkx
+        password: embarkx
+
+    jackson:
+        time-zone: Asia/Kolkata
+
+
+    jpa:
+#        database: POSTGRESQL
+        show-sql: true
+
+        hibernate:
+            ddl-auto: update
+        properties:
+            hibernate:
+                jdbc:
+                    time_zone: Asia/Kolkata
+        database-platform: org.hibernate.dialect.PostgreSQLDialect
